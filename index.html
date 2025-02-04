@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #1f1f1f;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        nav ul li {
+            margin: 15px;
+        }
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #4ca1af;
+        }
+        #hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        #hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #4ca1af;
+            width: 21ch; /* Adjust this value to match the exact width of the text */
+            animation: typing 4s steps(22, end), blink-caret 0.75s step-end infinite; /* Reduced duration to 4s */
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 21ch; } /* Adjust this value to match the exact width of the text */
+        }
+        @keyframes blink-caret {
+            from, to { border-color: #4ca1af; }
+            50% { border-color: transparent; }
+        }
+        #hero p {
+            font-size: 1.5rem;
+            margin: 10px 0 0;
+            color: #4ca1af;
+        }
+        #about {
+            padding: 40px 20px;
+        }
+        #experience {
+            padding: 40px 20px;
+        }
+        .experience-item {
+            margin-bottom: 20px;
+            background: #1f1f1f;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(76, 161, 175, 0.5);
+        }
+        /* Skills Section */
+        #skills {
+            padding: 40px 20px;
+            background: #1f1f1f;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .skill-card {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(76, 161, 175, 0.3), transparent);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+        .skill-card:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .skill-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 15px rgba(76, 161, 175, 0.7);
+        }
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .skill-card p {
+            font-size: 1rem;
+            color: #4ca1af;
+            position: relative;
+            z-index: 1;
+        }
+        .skill-card a {
+            color: inherit;
+            text-decoration: none;
+        }
+        /* Projects Section */
+        #portfolio {
+            padding: 40px 20px;
+        }
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .project-card {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(76, 161, 175, 0.3), transparent);
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s ease;
+            z-index: 0;
+        }
+        .project-card:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 15px rgba(76, 161, 175, 0.7);
+        }
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .project-card p {
+            font-size: 1rem;
+            color: #4ca1af;
+            position: relative;
+            z-index: 1;
+        }
+        #contact {
+            background: #1f1f1f;
+            padding: 30px;
+        }
+
+        /* Social Card in Contact Section */
+        .social-card {
+            background: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .social-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .social-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 0px 15px rgba(76, 161, 175, 0.7);
+        }
+
+        .social-card a {
+            color: inherit;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">Über Mich</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="hero">
+        <div id="particles"></div>
+        <h1 class="typing">Welcome to My Portfolio</h1>
+        <p>Game Developer | Software Engineer</p>
+    </section>
+    
+    <section id="about">
+        <h2>Über Mich</h2>
+        <p>Beschreibung meiner Softwareentwicklungserfahrung und Links zu sozialen Netzwerken.</p>
+    </section>
+
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="experience-item">
+            <h3>SRH University Heidelberg</h3>
+            <p><strong>Game Developer|Game Programmer</strong> | Sep 2022 - Present</p>
+            <ul>
+                <li>Student at the SRH University Heidelberg.</li>
+                <li>Worked on a few Projects and founded with friends a Indie Studio called EmberwoodEnt.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <a href="https://unity.com/" target="_blank" rel="noopener noreferrer">
+                    <h3>Unity</h3>
+                    <p>Game Development Engine</p>
+                </a>
+            </div>
+            <div class="skill-card">
+                <a href="https://www.unrealengine.com/" target="_blank" rel="noopener noreferrer">
+                    <h3>Unreal Engine</h3>
+                    <p>Game Development Engine</p>
+                </a>
+            </div>
+            <div class="skill-card">
+                <a href="https://www.mapeditor.org/" target="_blank" rel="noopener noreferrer">
+                    <h3>Tiled</h3>
+                    <p>Map Editor Framework</p>
+                </a>
+            </div>
+            <div class="skill-card">
+                <a href="https://www.raylib.com/" target="_blank" rel="noopener noreferrer">
+                    <h3>Raylib</h3>
+                    <p>Game Development Library</p>
+                </a>
+            </div>
+            <div class="skill-card">
+                <a href="https://github.com/SSBMTonberry/tileson" target="_blank" rel="noopener noreferrer">
+                    <h3>Tileson</h3>
+                    <p>Map Editor Framework</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2>Portfolio</h2>
+        <div class="projects">
+            <div class="project-card">
+                <h3>Projekt 1</h3>
+                <p>Beschreibung des Projekts.</p>
+            </div>
+            <div class="project-card">
+                <h3>Projekt 2</h3>
+                <p>Beschreibung des Projekts.</p>
+            </div>
+            <div class="project-card">
+                <h3>Projekt 3</h3>
+                <p>Beschreibung des Projekts.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <h2>Kontakt</h2>
+        <p>Hier kannst du mich erreichen.</p>
+        <div class="social-card">
+            <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">
+                <img src="C:/Users/kaima/Desktop/Website/GitHubLogo.png" alt="GitHub">
+            </a>
+        </div>
+    </section>
+    
+    <script>
+        // Particle animation setup
+        const canvas = document.createElement('canvas');
+        canvas.id = 'particles';
+        document.body.appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const mouse = { x: null, y: null, radius: 100 };
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function createParticles(count) {
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    dx: (Math.random() - 0.5) * 2,
+                    dy: (Math.random() - 0.5) * 2,
+                    size: Math.random() * 2,
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#4ca1af';
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+                p.x += p.dx;
+                p.y += p.dy;
+
+                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+            });
+        }
+
+        function drawConnections() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a + 1; b < particles.length; b++) {
+                    const dist = Math.hypot(particles[a].x - particles[b].x, particles[a].y - particles[b].y);
+                    if (dist < 200) { // Increase the distance for more connections
+                        ctx.strokeStyle = `rgba(76, 161, 175, ${1 - dist / 200})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function highlightParticles() {
+            particles.forEach(p => {
+                const dist = Math.hypot(mouse.x - p.x, mouse.y - p.y);
+                if (dist < mouse.radius) {
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size * 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            });
+        }
+
+        function animateParticles() {
+            drawParticles();
+            drawConnections();
+            highlightParticles();
+            requestAnimationFrame(animateParticles);
+        }
+
+        resizeCanvas();
+        createParticles(150); // Increase the number of particles
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            particles = [];
+            createParticles(100); // Increase the number of particles
+        });
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+    </script>
+</body>
+</html>
